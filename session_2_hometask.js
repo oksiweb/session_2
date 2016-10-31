@@ -17,24 +17,29 @@ console.log(extractCharacters('aaaabc'));
 console.log(extractCharacters('Hello,hi     world      '));
    //[ 'h', 'e', 'l', 'o', ',', ' ', 'w', 'r', 'd' ];
 
+function extractCharactersWithSet(str){
+    let set = new Set();
+    str.toLowerCase().split('').filter(key => set.add(key));
+    return [...set];
+}
+
+console.log(extractCharactersWithSet('abcd'));
+    //['a', 'b', 'c', 'd']
+console.log(extractCharactersWithSet('aaaabc'));
+    //['a', 'b', 'c']
+console.log(extractCharactersWithSet('Hello,hi     world      '));
+   //[ 'h', 'e', 'l', 'o', ',', ' ', 'w', 'r', 'd' ];
+
+
 /*
    Напишите функцию, которая будет возвращать новую функцию,
    с помощью которой можно будет выводить в консоль текстовую информацию.
    Задача на 5+: сделать так, чтобы кастомный логгер не "ломал" коллстек.
 */
 
+
+
 //first variant
-
-function createLogger(prefix){
-  return function(data) {
-    console.log(new Date().toISOString() + ' ' + prefix + ': ' + data);
-  }
-}
-
-var myLogger = createLogger('My Logger');
-myLogger('some data');
-
-//second variant
 
 function createLogger(prefix){
     var data = new Date().toISOString() + ' ' + prefix + ': ' ;
@@ -43,5 +48,16 @@ function createLogger(prefix){
 
 var myLogger = createLogger('My Logger');
 myLogger('some data');
+
+//second variant
+/*
+function createLogger(prefix){
+  return function(data) {
+    console.log(new Date().toISOString() + ' ' + prefix + ': ' + data);
+  }
+}
+var myLogger = createLogger('My Logger');
+myLogger('some data');
+*/
 
 
