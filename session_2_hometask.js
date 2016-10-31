@@ -6,12 +6,8 @@
 
 function extractCharacters(str){
     var obj = {};
-	return str.toLowerCase().split('').filter(function(key){
-		if(!(key in obj)){
-			obj[key] = true;
-			return key;
-		}
-	});
+    str.toLowerCase().split('').filter(key => obj[key] = true);
+    return Object.keys(obj);
 }
 
 console.log(extractCharacters('abcd'));
